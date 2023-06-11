@@ -1,7 +1,8 @@
 {
   "name": "backgen.io",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Backgen cli",
+  "homepage": "https://backgen.io",
   "type": "module",
   "repository": {
     "type": "git",
@@ -12,9 +13,6 @@
     "start": "node ."
   },
   "bin": "./index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "archiver": "^5.3.1",
     "chalk": "^5.2.0",

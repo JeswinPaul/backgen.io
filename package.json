@@ -1,5 +1,5 @@
 {
-  "name": "backgens",
+  "name": "backgen.io",
   "version": "1.0.0",
   "description": "Backgen cli",
   "homepage": "https://backgen.io",
@@ -12,7 +12,9 @@
   "scripts": {
     "start": "node ."
   },
-  "bin": "./index.js",
+  "bin":{
+    "backgen.io": "./index.js"
+  },
   "dependencies": {
     "archiver": "^5.3.1",
     "chalk": "^5.2.0",

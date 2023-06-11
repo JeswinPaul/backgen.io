@@ -12,6 +12,15 @@
   "scripts": {
     "start": "node ."
   },
+  "keywords": [
+    "generator",
+    "cli",
+    "apollo",
+    "graphql",
+    "node"
+  ],
+  "author": "Jeswin Paul",
+  "license": "MIT",
   "bin":{
     "backgen.io": "./index.js"
   },

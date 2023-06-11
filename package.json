@@ -1,6 +1,6 @@
 {
-  "name": "backgen.io",
-  "version": "1.0.4",
+  "name": "backgens",
+  "version": "1.0.0",
   "description": "Backgen cli",
   "homepage": "https://backgen.io",
   "type": "module",

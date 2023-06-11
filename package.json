@@ -1,0 +1,27 @@
+{
+  "name": "backgen.io",
+  "version": "1.0.1",
+  "description": "Backgen cli",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JeswinPaul/backgen.io"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "bin": "./index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "chalk": "^5.2.0",
+    "figlet": "^1.6.0",
+    "fs": "^0.0.1-security",
+    "graphql-request": "^6.1.0",
+    "inquirer": "^9.2.7",
+    "nanospinner": "^1.1.0"
+  }
+}

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { gql, request } from 'graphql-request'
 
-const endpoint = `https://server.steponee.com/graphql`
+const endpoint = ``
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,20 +17,12 @@ const currentFolders = __dirname?.split('/')
 const allarg = process.argv
 
 const query = gql`
-query ExampleQuery($getAdsId: String) {
-  getAds(id: $getAdsId) {
-    image
-  }
-}
+
 `
 
 const variables = {
     getAdsId: "job"
 }
-
-const headers = {
-    Authorization: `Bearer mTyfJrc4QXhGsJJ5D`,
-};
 
 let user = "jeswinpaul"
 let email
@@ -126,12 +118,16 @@ async function getProjectId(){
 
 async function checkProject(){
     const spinner = createSpinner('Checking project').start()
-
-    await request(endpoint, query, variables, headers)
-    .then((data)=>{
+    const data = [{image:"1234"}]
+    // await request(endpoint, query, variables, headers)
+    // .then((data)=>{
+    //     spinner.success()
+    //     getProject(data?.getAds)
+    // })
+    setTimeout(() => {
         spinner.success()
-        getProject(data?.getAds)
-    })
+        getProject(data)
+    }, 3000)
     .catch((error)=>{
         spinner.error("Error: Download failed")
     })

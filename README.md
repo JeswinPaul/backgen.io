@@ -1,5 +1,5 @@
 
-# Backgen CLI
+# Backgen CLI (Under Development)
 
 You can create and run fully functional apollo graphql server in minutes. Create free account https://backgen.io.
 ## Installation

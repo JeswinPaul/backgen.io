@@ -24,13 +24,13 @@ const variables = {
     getAdsId: "job"
 }
 
-let user = "jeswinpaul"
+let user = ""
 let email
 let password
 let project
 
 function welcome(){
-    figlet("Backgen", function (err, data) {
+    figlet("Backgen",{font:"Rectangles"}, function (err, data) {
         if (err) {
           console.log("Something went wrong");
           console.dir(err);
@@ -87,7 +87,7 @@ async function allOptions(){
         name: 'options',
         type: 'list',
         message: 'Select option:',
-        choices:user? ["clone", "update", "logout"] : ["clone", "update", "login"]
+        choices:user? ["clone", "update", "whoami", "logout", "help"] : ["clone", "update", "login", "help"]
     })
     if(data.options === 'login'){
         return askLogin()
@@ -169,18 +169,26 @@ function onUpdate(){
     
     fs.access(`${__dirname}/backgen.json`, fs.constants.F_OK, (err) => {
         if (err) {
-            spinner.error({text:"Error: backgen.json not found"})
+            setTimeout(() => {
+                spinner.error({text:"Error: backgen.json not found"})
+            }, 2000)
         }else{
             fs.readFile(`${__dirname}/backgen.json`, 'utf8', (err, data) => {
                 if (err) {
-                    spinner.error({text:"Error: backgen.json not found"})
+                    setTimeout(() => {
+                        spinner.error({text:"Error: backgen.json not found"})
+                    }, 2000)
                 }
                 try {
                     const jsonData = JSON.parse(data);
-                    spinner.success()
-                    checkUpdate(jsonData);
+                    setTimeout(() => {
+                        spinner.success()
+                        checkUpdate(jsonData);
+                    }, 2000)
                 } catch (err) {
-                    spinner.error({text:"Error: backgen.json not found"})
+                    setTimeout(() => {
+                        spinner.error({text:"Error: backgen.json not found"})
+                    }, 2000)
                 }
             });
         }

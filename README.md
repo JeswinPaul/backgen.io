@@ -1,13 +1,13 @@
 
 # Backgen CLI (Under Development)
 
-You can create and run fully functional apollo graphql server in minutes. Create free account https://backgen.io.
+Create and run fully functional Apollo GraphQL server in minutes. Try it out for yourself at http://www.backgen.io/.
 ## Installation
 
 Install backgen cli with npx
 
 ```bash
-npm install -g backgen.io
+npx backgen.io
 ```
 ## User Guide
 

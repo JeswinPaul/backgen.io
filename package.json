@@ -4,10 +4,6 @@
   "description": "Backgen cli",
   "homepage": "https://backgen.io",
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JeswinPaul/backgen.io"
-  },
   "main": "index.js",
   "scripts": {
     "start": "node ."

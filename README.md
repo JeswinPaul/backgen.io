@@ -7,7 +7,7 @@ You can create and run fully functional apollo graphql server in minutes. Create
 Install backgen cli with npx
 
 ```bash
-npx backgen.io
+npm install -g backgen.io
 ```
 ## User Guide
 

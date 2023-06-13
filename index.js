@@ -128,9 +128,9 @@ async function checkProject(){
         spinner.success()
         getProject(data)
     }, 3000)
-    .catch((error)=>{
-        spinner.error("Error: Download failed")
-    })
+    // .catch((error)=>{
+    //     spinner.error("Error: Download failed")
+    // })
 }
 
 function getProject(data){

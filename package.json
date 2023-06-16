@@ -1,6 +1,6 @@
 {
   "name": "backgen.io",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Backgen cli",
   "homepage": "https://backgen.io",
   "type": "module",
@@ -21,12 +21,13 @@
   ],
   "author": "Jeswin Paul",
   "license": "MIT",
-  "bin":{
+  "bin": {
     "backgen.io": "./index.js"
   },
   "dependencies": {
     "archiver": "^5.3.1",
     "chalk": "^5.2.0",
+    "child_process": "^1.0.2",
     "figlet": "^1.6.0",
     "fs": "^0.0.1-security",
     "graphql-request": "^6.1.0",

@@ -7,11 +7,13 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { gql, request } from 'graphql-request'
+import { exec } from 'child_process'
 
 const endpoint = ``
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const hasNodeModulesFolder = fs.existsSync('node_module');
 
 const currentFolders = __dirname?.split('/')
 const allarg = process.argv
@@ -24,7 +26,9 @@ const variables = {
     getAdsId: "job"
 }
 
-let user = ""
+const packageCodeFire = '{\n  "name": "server-factory",\n  "version": "1.0.0",\n  "description": "",\n  "main": "index.js",\n  "scripts": {\n    "start": "node index.js",\n    "test": "nodemon index.js"\n  },\n  "keywords": [],\n  "author": "",\n  "license": "ISC",\n  "dependencies": {\n    "@apollo/server": "^4.7.1",\n    "firebase": "^9.22.0",\n    "graphql": "^16.6.0",\n    "nodemon": "^2.0.22"\n  }\n}'
+
+let user = "Jeswin"
 let email
 let password
 let project
@@ -46,6 +50,8 @@ function welcome(){
                 onUpdate()
             }else if(allarg[2] === 'whoami'){
                 console.log(chalk.hex("#12a7cd")(user))
+            }else if(allarg[2] === 'run'){
+                onServe()
             }else{
                 allOptions()
             }
@@ -87,7 +93,7 @@ async function allOptions(){
         name: 'options',
         type: 'list',
         message: 'Select option:',
-        choices:user? ["clone", "update", "whoami", "logout", "help"] : ["clone", "update", "login", "help"]
+        choices:user? ["clone", "update", "help"] : ["clone", "update", "help"]
     })
     if(data.options === 'login'){
         return askLogin()
@@ -151,7 +157,8 @@ function getProject(data){
 
         fs.writeFileSync(`${folderName}/index.js`, file2Content);
 
-        fs.writeFileSync(`${folderName}/package.json`, file3Content);
+        fs.writeFileSync(`${folderName}/package.json`, packageCodeFire);
+        fs.writeFileSync(`${folderName}/.env`, file3Content);
         setTimeout(() => {
             spinner.success()
         }, 3000)
@@ -200,6 +207,29 @@ function checkUpdate(data){
     setTimeout(() => {
         spinner.success()
         console.log(`${data?.backgen?.name}/${data?.backgen?.user?.username}`);
+    }, 3000)
+}
+
+function onServe(){
+    const command = 'npm install';
+    const spinner = createSpinner("Running "+ command).start()
+    exec(command, (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error executing command: ${error}`);
+        return;
+    }
+    setTimeout(() => {
+        spinner.success()
+        console.log(`Command output: ${stdout}`);
+        pm2Setup()
+    }, 3000)
+    })
+}
+
+function pm2Setup(){
+    const spinner = createSpinner("Setting up PM2").start()
+    setTimeout(() => {
+        spinner.success()
     }, 3000)
 }
 

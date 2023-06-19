@@ -41,6 +41,8 @@ function welcome(){
           return;
         }
         console.log(data);
+        console.log(chalk.hex("#FF0000")("Under construction"))
+        console.log("");
         setTimeout(() => {
             if(allarg[2] === 'login'){
                 askLogin()

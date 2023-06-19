@@ -23,6 +23,24 @@ Update existing project
 npx backgen.io update
 ```
 
+Run project with NPM
+
+```bash
+npx backgen.io run npm
+```
+
+Run project with PM2
+
+```bash
+npx backgen.io run pm2
+```
+
+Run project with Docker
+
+```bash
+npx backgen.io run docker
+```
+
 Login to backgen.io
 
 ```bash

@@ -14,12 +14,12 @@ query GetUser {
 export const project_query = gql`
 query GetProject($getProjectId: ID!) {
   getProject(id: $getProjectId) {
-    uuid
+    _id
     name
     database
     version
-    services
     author
+    uuid
     schemas {
       _id
       functions
@@ -29,14 +29,18 @@ query GetProject($getProjectId: ID!) {
       arrays
       requires
       relations
+      relationFields
     }
     triggers {
       delay
-      id
+      _id
       name
       when
       trigger
       type
+    }
+    services {
+      _id
     }
   }
 }

@@ -1,2 +1,414 @@
 #!/usr/bin/env node
-const backgen_0x388cba=backgen_0x5710;(function(_0x4b1c7b,_0x37768b){const _0x549587=backgen_0x5710,_0x4cbd22=_0x4b1c7b();while(!![]){try{const _0x294ae6=parseInt(_0x549587(0x243))/0x1*(parseInt(_0x549587(0x205))/0x2)+-parseInt(_0x549587(0x1f1))/0x3*(-parseInt(_0x549587(0x268))/0x4)+parseInt(_0x549587(0x225))/0x5+parseInt(_0x549587(0x207))/0x6*(parseInt(_0x549587(0x209))/0x7)+parseInt(_0x549587(0x23b))/0x8*(-parseInt(_0x549587(0x24f))/0x9)+-parseInt(_0x549587(0x23f))/0xa*(-parseInt(_0x549587(0x1e7))/0xb)+-parseInt(_0x549587(0x253))/0xc;if(_0x294ae6===_0x37768b)break;else _0x4cbd22['push'](_0x4cbd22['shift']());}catch(_0x3e45b4){_0x4cbd22['push'](_0x4cbd22['shift']());}}}(backgen_0x1fed,0xb754e));import backgen_0x5c8fbe from'chalk';import backgen_0x1e70a2 from'inquirer';import{createSpinner}from'nanospinner';function backgen_0x5710(_0x29ac60,_0x42001b){const _0x1feda8=backgen_0x1fed();return backgen_0x5710=function(_0x571071,_0xac4924){_0x571071=_0x571071-0x1dd;let _0x19200b=_0x1feda8[_0x571071];return _0x19200b;},backgen_0x5710(_0x29ac60,_0x42001b);}import backgen_0x4940c3 from'figlet';import backgen_0x3c3029 from'fs';import{fileURLToPath}from'url';import{dirname}from'path';import{request}from'graphql-request';import{exec}from'child_process';import{project_query,projects_query}from'./gql/query.js';import{login_mutation}from'./gql/mutation.js';const endpoint='https://backgen-server.onrender.com',__filename=fileURLToPath(import.meta[backgen_0x388cba(0x230)]),__dirname=dirname(__filename),hasNodeModulesFolder=backgen_0x3c3029['existsSync']('node_module'),credFile=backgen_0x388cba(0x1e0),currentFolders=__dirname?.[backgen_0x388cba(0x226)]('/'),allarg=process[backgen_0x388cba(0x1fc)];let email,password,project,user;const headers={'Authorization':user?.[backgen_0x388cba(0x1e9)]||''};function welcome(){const _0x8d354d=backgen_0x388cba;backgen_0x3c3029[_0x8d354d(0x223)](credFile,_0x8d354d(0x260),(_0x5b02ee,_0xcded8f)=>{const _0x16e6d7=_0x8d354d;if(_0x5b02ee){console[_0x16e6d7(0x20c)](_0x16e6d7(0x234),_0x5b02ee);return;}if(_0xcded8f){const _0x6e3e74=JSON[_0x16e6d7(0x266)](_0xcded8f);user=_0x6e3e74;}}),backgen_0x4940c3(_0x8d354d(0x21b),{'font':_0x8d354d(0x21c)},function(_0x43c071,_0x2c14ac){const _0x2e73ef=_0x8d354d;if(_0x43c071){console[_0x2e73ef(0x210)](_0x2e73ef(0x1ef)),console[_0x2e73ef(0x246)](_0x43c071);return;}console[_0x2e73ef(0x210)](_0x2c14ac),console[_0x2e73ef(0x210)](backgen_0x5c8fbe[_0x2e73ef(0x235)]('#FF0000')(_0x2e73ef(0x22f))),console[_0x2e73ef(0x210)](''),setTimeout(()=>{const _0x132541=_0x2e73ef;if(allarg[0x2]===_0x132541(0x1f3))user?(console[_0x132541(0x210)](_0x132541(0x26b)),console['log'](backgen_0x5c8fbe[_0x132541(0x235)](_0x132541(0x24a))(user?.[_0x132541(0x262)])),console[_0x132541(0x210)]('')):askLogin();else{if(allarg[0x2]===_0x132541(0x1e8))user?onClone():(console['log'](_0x132541(0x1de)),askLogin()[_0x132541(0x240)](()=>{onClone();}));else{if(allarg[0x2]===_0x132541(0x250))onUpdate();else{if(allarg[0x2]===_0x132541(0x1e1))user?(console[_0x132541(0x210)](backgen_0x5c8fbe[_0x132541(0x235)](_0x132541(0x24a))(user?.[_0x132541(0x262)])),console['log']('')):(console['log']('You\x20are\x20not\x20logged\x20in'),console[_0x132541(0x210)](''));else{if(allarg[0x2]===_0x132541(0x257))user?onLogout():console[_0x132541(0x210)](_0x132541(0x239));else allarg[0x2]===_0x132541(0x206)?onServe():user?allOptions():(console[_0x132541(0x210)](_0x132541(0x1de)),askLogin()[_0x132541(0x240)](()=>{allOptions();}));}}}}},0x3e8);});}async function askLogin(){const _0x5b8172=backgen_0x388cba,_0x1f552a=await backgen_0x1e70a2[_0x5b8172(0x1ec)]({'name':'email','type':_0x5b8172(0x23c),'message':_0x5b8172(0x1f8)});return email=_0x1f552a[_0x5b8172(0x262)],askPassword();}async function askPassword(){const _0x3a0187=backgen_0x388cba,_0x2ddbc7=await backgen_0x1e70a2[_0x3a0187(0x1ec)]({'name':_0x3a0187(0x228),'type':_0x3a0187(0x228),'message':_0x3a0187(0x1f9)});return password=_0x2ddbc7['password'],onLogin();}async function onLogin(){const _0x2f11ef=backgen_0x388cba,_0xbbdefc=createSpinner(_0x2f11ef(0x1f0))[_0x2f11ef(0x264)](),_0x440c8c={'login':{'email':email,'password':password}};await request(endpoint,login_mutation,_0x440c8c,headers)[_0x2f11ef(0x240)](_0x18cdf7=>{const _0x1465dd=_0x2f11ef;_0xbbdefc['success']();const _0x2b191d=JSON[_0x1465dd(0x20e)]({'email':email,'jwt':_0x18cdf7?.[_0x1465dd(0x222)]});backgen_0x3c3029[_0x1465dd(0x233)](credFile,_0x2b191d,_0x10dbfa=>{const _0x9dc75e=_0x1465dd;if(_0x10dbfa){console[_0x9dc75e(0x20c)](_0x9dc75e(0x218),_0x10dbfa);return;}user={'email':email,'jwt':_0x18cdf7?.[_0x9dc75e(0x222)]};}),_0xbbdefc[_0x1465dd(0x1ee)]({'text':_0x1465dd(0x238)}),console['log'](backgen_0x5c8fbe[_0x1465dd(0x235)]('#12a7cd')(email));})[_0x2f11ef(0x229)](_0x5dd80b=>{const _0x262c93=_0x2f11ef;_0xbbdefc[_0x262c93(0x20c)]({'text':'Invalid\x20credentials'});});}async function onLogout(){const _0x1a61df=backgen_0x388cba,_0x31c0ca=createSpinner(_0x1a61df(0x1f0))[_0x1a61df(0x264)]();backgen_0x3c3029[_0x1a61df(0x233)](credFile,'',_0x46cf99=>{const _0x5b1d68=_0x1a61df;if(_0x46cf99){console[_0x5b1d68(0x20c)](_0x5b1d68(0x218),_0x46cf99);return;}}),_0x31c0ca[_0x1a61df(0x1ee)]({'text':'Successfully\x20logged\x20out'});}async function allOptions(){const _0xfc7b8a=backgen_0x388cba,_0x37b010=await backgen_0x1e70a2[_0xfc7b8a(0x1ec)]({'name':_0xfc7b8a(0x25b),'type':_0xfc7b8a(0x21e),'message':'Select\x20option:','choices':user?[_0xfc7b8a(0x1e8),_0xfc7b8a(0x250),_0xfc7b8a(0x249)]:[_0xfc7b8a(0x1e8),_0xfc7b8a(0x250),_0xfc7b8a(0x249)]});if(_0x37b010[_0xfc7b8a(0x25b)]===_0xfc7b8a(0x1f3))return askLogin();else{if(_0x37b010[_0xfc7b8a(0x25b)]===_0xfc7b8a(0x1e8))onClone();else _0x37b010['options']==='update'&&onUpdate();}}function onClone(){allarg[0x3]||project?checkProject():cloneOptions();}async function cloneOptions(){const _0x3ce16a=backgen_0x388cba,_0x2bbf2f=await backgen_0x1e70a2[_0x3ce16a(0x1ec)]({'name':_0x3ce16a(0x25b),'type':'list','message':_0x3ce16a(0x256),'choices':['Get\x20all\x20projects',_0x3ce16a(0x1ed)]});if(_0x2bbf2f[_0x3ce16a(0x25b)]===_0x3ce16a(0x252))getAllProject();else _0x2bbf2f[_0x3ce16a(0x25b)]===_0x3ce16a(0x1ed)&&getProjectId();}function backgen_0x1fed(){const _0x389a80=['utf8','Error:\x20backgen.json\x20not\x20found','email','getUser','start','_,args,{}','parse','map','4bcBXob','{\x0a\x20\x20\x20\x20\x22projectID\x22:\x20\x22','/backgen.json','You\x20are\x20already\x20logged\x20in\x20as','get','Getting\x20projects','\x20\x20const\x20result\x20=\x20await\x20getDoc(','})\x0a\x20\x20\x20\x20\x20if(result){}','{\x0a\x20\x20\x22name\x22:\x20\x22server-factory\x22,\x0a\x20\x20\x22version\x22:\x20\x221.0.0\x22,\x0a\x20\x20\x22description\x22:\x20\x22\x22,\x0a\x20\x20\x22main\x22:\x20\x22index.js\x22,\x0a\x20\x20\x22scripts\x22:\x20{\x0a\x20\x20\x20\x20\x22start\x22:\x20\x22node\x20index.js\x22,\x0a\x20\x20\x20\x20\x22test\x22:\x20\x22nodemon\x20index.js\x22\x0a\x20\x20},\x0a\x20\x20\x22keywords\x22:\x20[],\x0a\x20\x20\x22author\x22:\x20\x22\x22,\x0a\x20\x20\x22license\x22:\x20\x22ISC\x22,\x0a\x20\x20\x22dependencies\x22:\x20{\x0a\x20\x20\x20\x20\x22@apollo/server\x22:\x20\x22^4.7.1\x22,\x0a\x20\x20\x20\x20\x22@aws-sdk/client-dynamodb\x22:\x20\x22^3.328.0\x22,\x0a\x20\x20\x20\x20\x22graphql\x22:\x20\x22^16.6.0\x22,\x0a\x20\x20\x20\x20\x22nodemon\x22:\x20\x22^2.0.22\x22,\x0a\x20\x20\x20\x20\x22uuid\x22:\x20\x22^9.0.0\x22\x0a\x20\x20}\x0a}','\x20\x20},\x0a','firebase','Setting\x20up\x20PM2',')=>{\x0a\x20\x20','Please\x20login\x20to\x20continue','code','./backgen.json','whoami','filter','Filter,\x20limit:Int','(){\x0a};\x0a','\x0a\x0ainput\x20','writeFileSync','2629xTUUZm','clone','jwt','database','\x0a\x20\x20','prompt','Enter\x20project\x20ID','success','Something\x20went\x20wrong','Please\x20wait','2033142JCipgy',':\x20async\x20(','login','toLowerCase','\x20\x20\x20\x20','Checking\x20project','\x22\x0a}','Email\x20Address:','Password:','const\x20{\x20initializeApp\x20}\x20=\x20require(\x27firebase/app\x27);\x0aconst\x20{\x20getFirestore,\x20collection,\x20doc,\x20getDoc,\x20getDocs\x20}\x20=\x20require(\x27firebase/firestore\x27);\x0a\x0aconst\x20firebaseConfig\x20=\x20{\x0a};\x0aconst\x20app\x20=\x20initializeApp(firebaseConfig);\x0a\x0aconst\x20db\x20=\x20getFirestore(app);\x0a\x0a','const\x20typeDefs\x20=\x20`#graphql','argv','project','\x0a\x0atype\x20',':{\x0a\x20\x20\x20}','getProject','Filter\x20{\x0a','Running\x20','name','npm\x20install','1157134YOieOo','run','213582aNskop','()\x0a','224PKWbxe','filter:','when','error','/typeDefs.js','stringify','\x0a\x0atype\x20Query\x20{\x0a','log','uuid','\x20\x20}','Downloading','_,{id},{}','const\x20{\x20ApolloServer\x20}\x20=\x20require(\x27@apollo/server\x27);\x0aconst\x20{\x20startStandaloneServer\x20}\x20=\x20require(\x27@apollo/server/standalone\x27);\x0aconst\x20{\x20typeDefs\x20}\x20=\x20require(\x27./schema/typeDefs.js\x27)\x0aconst\x20{\x20resolvers\x20}\x20=\x20require(\x27./schema/resolvers.js\x27)\x0a\x0aasync\x20function\x20startServer()\x20{\x0a\x20const\x20server\x20=\x20new\x20ApolloServer({\x0a\x20\x20typeDefs,\x0a\x20\x20resolvers,\x0a\x20});\x0a\x0a\x20const\x20{\x20url\x20}\x20=\x20await\x20startStandaloneServer(server,\x20{\x0a\x20\x20listen:\x20{\x20port:\x204000\x20},\x0a\x20\x20context:({req:{headers}})=>{\x0a\x20\x20\x20if(headers?.authorization\x20!=\x20`Bearer\x209xF729w2Ws9B839J`)\x20throw\x20new\x20Error(\x27no\x20auth\x27)\x0a\x20\x20}\x0a\x20});\x0a\x0a\x20console.log(`🚀\x20\x20Server\x20ready\x20at:\x20${url}`);\x0a}\x0a\x0astartServer()','{\x0a\x20\x20\x22name\x22:\x20\x22server-factory\x22,\x0a\x20\x20\x22version\x22:\x20\x221.0.0\x22,\x0a\x20\x20\x22description\x22:\x20\x22\x22,\x0a\x20\x20\x22main\x22:\x20\x22index.js\x22,\x0a\x20\x20\x22scripts\x22:\x20{\x0a\x20\x20\x20\x20\x22start\x22:\x20\x22node\x20index.js\x22,\x0a\x20\x20\x20\x20\x22test\x22:\x20\x22nodemon\x20index.js\x22\x0a\x20\x20},\x0a\x20\x20\x22keywords\x22:\x20[],\x0a\x20\x20\x22author\x22:\x20\x22\x22,\x0a\x20\x20\x22license\x22:\x20\x22ISC\x22,\x0a\x20\x20\x22dependencies\x22:\x20{\x0a\x20\x20\x20\x20\x22@apollo/server\x22:\x20\x22^4.7.1\x22,\x0a\x20\x20\x20\x20\x22firebase\x22:\x20\x22^9.22.0\x22,\x0a\x20\x20\x20\x20\x22graphql\x22:\x20\x22^16.6.0\x22,\x0a\x20\x20\x20\x20\x22nodemon\x22:\x20\x22^2.0.22\x22\x0a\x20\x20}\x0a}','mkdirSync','Error\x20saving\x20values:','projects','}\x20=\x20args.','Backgen','Rectangles',');\x0a','list','Table','\x0afunction\x20','services','onLogin','readFile','/resolvers.js','7315270GxpGeG','split','schema','password','catch','const\x20{\x20DynamoDB\x20}\x20=\x20require(\x27@aws-sdk/client-dynamodb\x27);\x0aconst\x20{\x20v4:\x20uuidv4\x20}\x20=\x20require(\x27uuid\x27);\x0a\x0aconst\x20db\x20=\x20new\x20DynamoDB({region:\x27\x27,\x20credentials:{accessKeyId:\x20\x27\x27,\x20secretAccessKey:\x20\x27\x27}});\x0a\x0a','join','\x0a\x20\x20},','TOKEN=Hello','Error\x20executing\x20command:\x20','Under\x20construction','url','(id:ID!):\x20String\x0a','Input):\x20','writeFile','Error\x20reading\x20file:','hex','Table\x20=\x20\x22\x22;\x0a','length','Successfully\x20logged\x20in\x20as','You\x20are\x20not\x20logged\x20in','const\x20resolvers\x20=\x20{\x0a','5752zwDSLH','input','\x0a\x20\x20\x20},\x0a','create','2030KCuALc','then','`;\x0a\x0amodule.exports\x20=\x20{\x20typeDefs\x20};','/package.json','1KYZFOa','):\x20','\x20\x20\x20},\x0a','dir','find',')=>{\x0a\x20\x20\x20\x20','help','#12a7cd','/index.js','Error:\x20Downloading\x20failed','\x20\x20\x20','const\x20{','8865FudxAM','update','\x0a\x20\x20\x20','Get\x20all\x20projects','29373780uJxvqS','delete','\x20\x20},\x0a\x20\x20Mutation:{\x0a','Select\x20option:','logout','Input\x20{\x0a',':\x20(','relations','options','\x0a\x0atype\x20Mutation\x20{\x0a','constants','\x20\x20Query:\x20{\x0a','Checking\x20for\x20update'];backgen_0x1fed=function(){return _0x389a80;};return backgen_0x1fed();}async function getAllProject(){const _0x38f175=backgen_0x388cba,_0x1e1fd6=createSpinner(_0x38f175(0x26d))[_0x38f175(0x264)](),_0x304300={'getProjectId':''},_0x44cc89={'Authorization':user?.[_0x38f175(0x1e9)]};await request(endpoint,projects_query,_0x304300,_0x44cc89)[_0x38f175(0x240)](_0x1d401e=>{const _0x32d72d=_0x38f175;_0x1e1fd6[_0x32d72d(0x1ee)](),showAllProject(_0x1d401e?.[_0x32d72d(0x263)]?.[_0x32d72d(0x219)]);})[_0x38f175(0x229)](_0x3b7c03=>{const _0x54f803=_0x38f175;_0x1e1fd6[_0x54f803(0x20c)](),console[_0x54f803(0x210)](_0x3b7c03);});}async function showAllProject(_0x29b8eb){const _0x3f41ca=backgen_0x388cba,_0xc2d3cd=await backgen_0x1e70a2[_0x3f41ca(0x1ec)]({'name':'options','type':_0x3f41ca(0x21e),'message':'Select\x20project:','choices':_0x29b8eb?.['map'](_0x4bb82d=>_0x4bb82d?.[_0x3f41ca(0x203)])});_0xc2d3cd['options']&&checkProject(_0x29b8eb?.[_0x3f41ca(0x247)](_0x538537=>_0x538537[_0x3f41ca(0x203)]===_0xc2d3cd[_0x3f41ca(0x25b)])?.['uuid']);}async function getProjectId(){const _0xb5a852=backgen_0x388cba,_0x99ba78=await backgen_0x1e70a2[_0xb5a852(0x1ec)]({'name':'project','type':_0xb5a852(0x23c),'message':'Project\x20ID:'});return checkProject(_0x99ba78?.[_0xb5a852(0x1fd)]);}async function checkProject(_0x120634){const _0x4ea108=backgen_0x388cba,_0x446bf5=createSpinner(_0x4ea108(0x1f6))['start'](),_0x26f92e={'getProjectId':_0x120634},_0x24e3fa={'Authorization':user?.[_0x4ea108(0x1e9)]};await request(endpoint,project_query,_0x26f92e,_0x24e3fa)[_0x4ea108(0x240)](_0x142a7c=>{const _0x21f09b=_0x4ea108;_0x446bf5[_0x21f09b(0x1ee)](),getProject(_0x142a7c);})[_0x4ea108(0x229)](_0x495eaf=>{const _0x24d002=_0x4ea108;_0x446bf5[_0x24d002(0x20c)]();});}function getProject(_0x392c4d){const _0x176d51=backgen_0x388cba,_0x2e137c=createSpinner(_0x176d51(0x213))[_0x176d51(0x264)](),_0x1bf222=_0x392c4d?_0x392c4d?.[_0x176d51(0x200)]?.[_0x176d51(0x1ea)]:'',_0x9dcfc5=_0x392c4d?_0x392c4d?.[_0x176d51(0x200)]?.[_0x176d51(0x221)]:[],_0x4ec7d9=_0x392c4d?_0x392c4d?.[_0x176d51(0x200)]?.['triggers']:[],_0x3e2cf3=_0x392c4d?_0x392c4d?.[_0x176d51(0x200)]?.['schemas']:[],_0x4ec56f=''+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x4e8c44,fields:_0x1cd33f,arrays:_0x1c992c,relations:_0x39b6e2,types:_0x31d2f0,requires:_0x72981f})=>_0x176d51(0x1fe)+_0x4e8c44+'\x20{\x0a'+_0x1cd33f?.[_0x176d51(0x267)]((_0x8c458c,_0x518c16)=>'\x20\x20'+_0x8c458c+':\x20'+(_0x1c992c[_0x518c16]?'[':'')+(_0x39b6e2[_0x518c16]?_0x39b6e2[_0x518c16]:_0x31d2f0[_0x518c16])+(_0x72981f[_0x518c16]?'!':'')+(_0x1c992c[_0x518c16]?']':'')+'\x0a')[_0x176d51(0x22b)]('')+'}')['join'](''),_0x55970d=''+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x1723ac,fields:_0x11ae90,arrays:_0x952fdc,types:_0x3891fc,requires:_0x51e11d})=>_0x176d51(0x1e5)+_0x1723ac+_0x176d51(0x258)+_0x11ae90?.[_0x176d51(0x267)]((_0x49d35d,_0x41925f)=>'\x20\x20'+_0x49d35d+':\x20'+(_0x952fdc[_0x41925f]?'[':'')+_0x3891fc[_0x41925f]+(_0x51e11d[_0x41925f]?'!':'')+(_0x952fdc[_0x41925f]?']':'')+'\x0a')[_0x176d51(0x22b)]('')+'}')[_0x176d51(0x22b)](''),_0x57b3e3=''+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x57002d,fields:_0x4c46e5,arrays:_0x20b8cb,types:_0x3683af,requires:_0x98fc19})=>_0x176d51(0x1e5)+_0x57002d+_0x176d51(0x201)+_0x4c46e5?.['map']((_0x1f1a2e,_0x424c45)=>_0x57002d==='id'?null:'\x20\x20'+_0x1f1a2e+':\x20'+(_0x20b8cb[_0x424c45]?'[':'')+_0x3683af[_0x424c45]+(_0x20b8cb[_0x424c45]?']':'')+'\x0a')[_0x176d51(0x22b)]('')+'}')[_0x176d51(0x22b)](''),_0x1f75a7=_0x176d51(0x20f)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x530337,functions:_0x5f5c6f})=>_0x5f5c6f?.[_0x176d51(0x1e2)](_0x3788ee=>_0x3788ee===_0x176d51(0x26c)||_0x3788ee===_0x176d51(0x21e))?.[_0x176d51(0x267)](_0x26428f=>'\x20\x20'+_0x26428f+_0x530337+'('+(_0x26428f===_0x176d51(0x21e)?_0x176d51(0x20a)+_0x530337+_0x176d51(0x1e3):'id:ID!')+_0x176d51(0x244)+(_0x26428f===_0x176d51(0x21e)?'[':'')+_0x530337+(_0x26428f===_0x176d51(0x21e)?']':'')+'\x0a')[_0x176d51(0x22b)](''))['join']('')+'}',_0x23297e=_0x176d51(0x25c)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x2d57a0,functions:_0x22d9a2})=>_0x22d9a2?.[_0x176d51(0x1e2)](_0x9a28fc=>_0x9a28fc===_0x176d51(0x23e)||_0x9a28fc===_0x176d51(0x250)||_0x9a28fc===_0x176d51(0x254))?.[_0x176d51(0x267)](_0x1bbb88=>_0x1bbb88===_0x176d51(0x254)?'\x20\x20'+_0x1bbb88+_0x2d57a0+_0x176d51(0x231):'\x20\x20'+_0x1bbb88+_0x2d57a0+'('+_0x2d57a0?.[_0x176d51(0x1f4)]()+':'+_0x2d57a0+_0x176d51(0x232)+_0x2d57a0+'\x0a')['join'](''))[_0x176d51(0x22b)]('')+'}\x0a',_0x19b3e4=_0x176d51(0x1fb)+_0x4ec56f+_0x55970d+_0x57b3e3+_0x1f75a7+_0x23297e+_0x176d51(0x241),_0x4e063e=_0x1bf222==='firebase'?resolverCodeFire:resolverCodeDyno,_0x20ad25=''+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x124bd8})=>'const\x20'+_0x124bd8+'Ref\x20=\x20collection(db,\x20\x22'+_0x124bd8+'s\x22'+_0x176d51(0x21d))[_0x176d51(0x22b)](''),_0x1417e9=''+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x1abb6c})=>'const\x20'+_0x1abb6c+_0x176d51(0x236))[_0x176d51(0x22b)](''),_0x2070cc=_0x1bf222===_0x176d51(0x272)?_0x20ad25:_0x1417e9,_0x43299=_0x3e2cf3?.[_0x176d51(0x237)]>0x0||_0x4ec7d9?.[_0x176d51(0x237)]>0x0?'\x0a':'',_0x4b4c62=_0x176d51(0x25e)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x45748d,functions:_0x12ae17})=>_0x12ae17?.[_0x176d51(0x1e2)](_0x4dc7d7=>_0x4dc7d7===_0x176d51(0x26c)||_0x4dc7d7===_0x176d51(0x21e))?.[_0x176d51(0x267)](_0x40da12=>_0x176d51(0x24d)+_0x40da12+_0x45748d+_0x176d51(0x1f2)+(_0x40da12===_0x176d51(0x21e)?_0x176d51(0x265):_0x176d51(0x214))+_0x176d51(0x1dd)+(_0x40da12===_0x176d51(0x21e)?'\x20\x20const\x20result\x20=\x20await\x20db.scan({TableName:'+(_0x45748d+_0x176d51(0x21f))+'})':'\x20\x20\x20const\x20result\x20=\x20await\x20db.getItem({Key:{id:{S:\x20id}},\x20TableName:'+(_0x45748d+_0x176d51(0x21f))+_0x176d51(0x26f))+_0x176d51(0x23d))[_0x176d51(0x22b)](''))[_0x176d51(0x22b)]('')+_0x176d51(0x255)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x95d539,functions:_0x9799b3,fields:_0x1f941c})=>_0x9799b3?.['filter'](_0x28a815=>_0x28a815==='create'||_0x28a815===_0x176d51(0x250)||_0x28a815===_0x176d51(0x254))?.[_0x176d51(0x267)](_0x5c30cd=>'\x20\x20\x20'+_0x5c30cd+_0x95d539+_0x176d51(0x259)+(_0x5c30cd===_0x176d51(0x254)?_0x176d51(0x214):_0x176d51(0x265))+_0x176d51(0x248)+(_0x5c30cd===_0x176d51(0x254)?'':_0x176d51(0x24e)+_0x1f941c?.[_0x176d51(0x267)](_0x2b0bd6=>'\x20'+_0x2b0bd6+'\x20')+_0x176d51(0x21a)+_0x95d539?.[_0x176d51(0x1f4)]())+'\x0a'+_0x4ec7d9?.[_0x176d51(0x1e2)](_0x49275e=>_0x49275e?.['when']===_0x5c30cd+_0x95d539)?.[_0x176d51(0x267)](_0x35118b=>_0x176d51(0x1f5)+_0x35118b?.['name']+_0x176d51(0x208))[_0x176d51(0x22b)]('')+_0x176d51(0x245))[_0x176d51(0x22b)](''))[_0x176d51(0x22b)]('')+'\x20\x20},',_0x2028c6=_0x176d51(0x25e)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x29ff61,functions:_0x5cb6b5})=>_0x5cb6b5?.[_0x176d51(0x1e2)](_0x524113=>_0x524113===_0x176d51(0x26c)||_0x524113==='list')?.[_0x176d51(0x267)](_0x1c0412=>_0x176d51(0x24d)+_0x1c0412+_0x29ff61+_0x176d51(0x1f2)+(_0x1c0412===_0x176d51(0x21e)?'_,args,{}':_0x176d51(0x214))+_0x176d51(0x1dd)+(_0x1c0412===_0x176d51(0x21e)?'\x20\x20const\x20result\x20=\x20await\x20getDocs('+(''+_0x29ff61)+'Ref)\x0a\x20\x20\x20\x20result.forEach((doc)\x20=>\x20{\x0a\x20\x20\x20\x20\x20return\x20doc.data()\x0a\x20\x20\x20\x20})':_0x176d51(0x26e)+(''+_0x29ff61)+'Ref)\x0a\x20\x20\x20\x20return\x20result.data()')+_0x176d51(0x23d))[_0x176d51(0x22b)](''))[_0x176d51(0x22b)]('')+_0x176d51(0x255)+_0x3e2cf3?.[_0x176d51(0x267)](({name:_0x380c2b,functions:_0x7502d4,fields:_0x11a5bb})=>_0x7502d4?.[_0x176d51(0x1e2)](_0x410e90=>_0x410e90===_0x176d51(0x23e)||_0x410e90==='update'||_0x410e90===_0x176d51(0x254))?.[_0x176d51(0x267)](_0x48cf88=>_0x176d51(0x24d)+_0x48cf88+_0x380c2b+_0x176d51(0x259)+(_0x48cf88===_0x176d51(0x254)?_0x176d51(0x214):'_,args,{}')+_0x176d51(0x248)+(_0x48cf88===_0x176d51(0x254)?'':_0x176d51(0x24e)+_0x11a5bb?.['map'](_0x56e0e9=>'\x20'+_0x56e0e9+'\x20')+_0x176d51(0x21a)+_0x380c2b?.['toLowerCase']())+'\x0a'+_0x4ec7d9?.['filter'](_0x226e48=>_0x226e48?.[_0x176d51(0x20b)]===_0x48cf88+_0x380c2b)?.[_0x176d51(0x267)](_0x3901f2=>_0x176d51(0x1f5)+_0x3901f2?.[_0x176d51(0x203)]+_0x176d51(0x208))[_0x176d51(0x22b)]('')+_0x176d51(0x271))[_0x176d51(0x22b)](''))[_0x176d51(0x22b)]('')+_0x176d51(0x212),_0x3da893=''+_0x3e2cf3?.['map'](_0x2af138=>_0x2af138?.[_0x176d51(0x25a)]?.[_0x176d51(0x1e2)](_0x286970=>_0x286970!=='')[_0x176d51(0x237)]>0x0?_0x176d51(0x1eb)+(_0x2af138?.[_0x176d51(0x203)]+':{')+'\x20\x20'+_0x2af138?.['relations']?.[_0x176d51(0x1e2)](_0x45dae8=>_0x45dae8!=='')?.['map'](_0x132539=>_0x176d51(0x251)+_0x132539+_0x176d51(0x1ff))+_0x176d51(0x22c):'')[_0x176d51(0x22b)](''),_0x2f65c6=_0x1bf222===_0x176d51(0x272)?_0x2028c6:_0x4b4c62,_0x4acdbe=''+_0x4ec7d9?.['map'](_0x315fd7=>_0x176d51(0x220)+_0x315fd7?.[_0x176d51(0x203)]+_0x176d51(0x1e4))[_0x176d51(0x22b)](''),_0x245684=_0x4e063e+_0x2070cc+_0x4acdbe+_0x43299+resolverCode1+_0x3da893+_0x2f65c6+resolverCodeEnd,_0x11f7b0=_0x1bf222===_0x176d51(0x272)?packageCodeFire:packageCodeDyno,backgenCode=_0x176d51(0x269)+_0x392c4d?.[_0x176d51(0x200)]?.[_0x176d51(0x211)]+_0x176d51(0x1f7);try{const _0x1f297a=_0x392c4d?.[_0x176d51(0x200)]?.[_0x176d51(0x203)];backgen_0x3c3029[_0x176d51(0x217)](_0x1f297a);const _0x4ea46e=_0x176d51(0x227);backgen_0x3c3029[_0x176d51(0x217)](_0x1f297a+'/'+_0x4ea46e),backgen_0x3c3029['writeFileSync'](_0x1f297a+'/'+_0x4ea46e+_0x176d51(0x224),_0x245684),backgen_0x3c3029[_0x176d51(0x1e6)](_0x1f297a+'/'+_0x4ea46e+_0x176d51(0x20d),_0x19b3e4),backgen_0x3c3029[_0x176d51(0x1e6)](_0x1f297a+_0x176d51(0x24b),indexCode),backgen_0x3c3029[_0x176d51(0x1e6)](_0x1f297a+_0x176d51(0x26a),backgenCode),backgen_0x3c3029[_0x176d51(0x1e6)](_0x1f297a+_0x176d51(0x242),_0x11f7b0),backgen_0x3c3029[_0x176d51(0x1e6)](_0x1f297a+'/.env',_0x176d51(0x22d)),setTimeout(()=>{const _0x1dc2ba=_0x176d51;_0x2e137c[_0x1dc2ba(0x1ee)]();},0xbb8);}catch(_0x4731f2){_0x4731f2?.[_0x176d51(0x1df)]==='EEXIST'?_0x2e137c[_0x176d51(0x20c)]({'text':'Error:\x20Folder\x20with\x20project\x20name\x20already\x20exist'}):(_0x2e137c[_0x176d51(0x20c)]({'text':_0x176d51(0x24c)}),console[_0x176d51(0x210)](_0x4731f2));}}function onUpdate(){const _0x4ea567=backgen_0x388cba,_0x577f07=createSpinner('Checking\x20project')[_0x4ea567(0x264)]();backgen_0x3c3029['access'](__dirname+_0x4ea567(0x26a),backgen_0x3c3029[_0x4ea567(0x25d)]['F_OK'],_0x1e8c3a=>{const _0xf80870=_0x4ea567;_0x1e8c3a?setTimeout(()=>{const _0x5e072a=backgen_0x5710;_0x577f07[_0x5e072a(0x20c)]({'text':'Error:\x20backgen.json\x20not\x20found'});},0x7d0):backgen_0x3c3029[_0xf80870(0x223)](__dirname+_0xf80870(0x26a),'utf8',(_0xc313c6,_0x53b29e)=>{const _0xd235c7=_0xf80870;_0xc313c6&&setTimeout(()=>{const _0x9f187f=backgen_0x5710;_0x577f07[_0x9f187f(0x20c)]({'text':'Error:\x20backgen.json\x20not\x20found'});},0x7d0);try{const _0x251f1e=JSON[_0xd235c7(0x266)](_0x53b29e);setTimeout(()=>{const _0x6683e2=_0xd235c7;_0x577f07[_0x6683e2(0x1ee)](),checkUpdate(_0x251f1e);},0x7d0);}catch(_0x449840){setTimeout(()=>{const _0xbf5e6c=_0xd235c7;_0x577f07[_0xbf5e6c(0x20c)]({'text':_0xbf5e6c(0x261)});},0x7d0);}});});}function checkUpdate(_0x315436){const _0x117b29=backgen_0x388cba,_0x4cd6c8=createSpinner(_0x117b29(0x25f))[_0x117b29(0x264)]();setTimeout(()=>{const _0x13801f=_0x117b29;_0x4cd6c8[_0x13801f(0x1ee)](),console[_0x13801f(0x210)](_0x315436);},0xbb8);}function onServe(){const _0x35189d=backgen_0x388cba,_0x3b548e=_0x35189d(0x204),_0x4958aa=createSpinner(_0x35189d(0x202)+_0x3b548e)[_0x35189d(0x264)]();exec(_0x3b548e,(_0x32150e,_0x15669c,_0x46c7db)=>{const _0x558099=_0x35189d;if(_0x32150e){console[_0x558099(0x20c)](_0x558099(0x22e)+_0x32150e);return;}setTimeout(()=>{const _0x2a5859=_0x558099;_0x4958aa[_0x2a5859(0x1ee)](),console['log']('Command\x20output:\x20'+_0x15669c),pm2Setup();},0xbb8);});}function pm2Setup(){const _0x82d08c=backgen_0x388cba,_0x1d3538=createSpinner(_0x82d08c(0x273))[_0x82d08c(0x264)]();setTimeout(()=>{const _0x344765=_0x82d08c;_0x1d3538[_0x344765(0x1ee)]();},0xbb8);}const indexCode=backgen_0x388cba(0x215),resolverCodeDyno=backgen_0x388cba(0x22a),resolverCodeFire=backgen_0x388cba(0x1fa),resolverCode1=backgen_0x388cba(0x23a),resolverCodeEnd='\x0a};\x0a\x0amodule.exports\x20=\x20{\x20resolvers\x20};',packageCodeDyno=backgen_0x388cba(0x270),packageCodeFire=backgen_0x388cba(0x216);welcome();
+import chalk from "chalk";
+import inquirer from 'inquirer';
+import { createSpinner } from 'nanospinner';
+import figlet from "figlet";
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { request, GraphQLClient } from 'graphql-request'
+import { exec } from 'child_process'
+import 'dotenv/config'
+
+import { project_query, projects_query } from "./gql/query.js"
+import { login_mutation } from "./gql/mutation.js"
+import { dockerFile, dockerIgnore, envContent, gitIgnore, indCode, mongoFile, packageCode, resolve, typeCode } from "./backgen/covertor.js";
+
+const endpoint = `https://backgen-server.onrender.com`
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const hasNodeModulesFolder = fs.existsSync('node_module');
+
+const currentFolders = __dirname?.split('/')
+const allarg = process.argv
+
+let email
+let password
+let project
+let user
+
+const getUser = () => {
+    const command = 'npm config get backgen';
+    exec(command, (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error executing command: ${error}`);
+        user = null
+    }else if(stdout.split('').length <= 10){
+        user = null
+    }else{
+        user = stdout
+    }
+    })
+}
+
+const headers = {
+    Authorization: user?.split(':')[1].split('\n').join('') || '',
+}
+
+function welcome(){
+    getUser()
+    figlet("backgen.io",{font:"Ogre"}, function (err, data) {
+        if (err) {
+          console.log("Something went wrong");
+          console.dir(err);
+          return;
+        }
+        console.log(data);
+        console.log(chalk.hex("#ffc42e")("Beta v0.2"))
+        console.log("");
+        console.log('Know more: https://backgen.io');
+        console.log("");
+        setTimeout(() => {
+            if(allarg[2] === 'login'){
+                if(user){
+                    console.log("You are already logged in as");
+                    console.log(chalk.hex("#12a7cd")(user?.split(':')[0]))
+                    console.log("");
+                }else{
+                    askLogin()
+                }
+            }else if(allarg[2] === 'clone'){
+                if(user){
+                    onClone()
+                }else{
+                    console.log("Please login to continue");
+                    askLogin()
+                    .then(()=>{
+                        if(user){
+                            onClone()
+                        }
+                    })
+                }
+            }else if(allarg[2] === 'update'){
+                // onUpdate()
+                console.log("Command: update is " + chalk.hex("#ffc42e")("Under development"));
+                console.log("");
+            }else if(allarg[2] === 'whoami'){
+                const command = 'npm config get backgen';
+                const spinner = createSpinner("Please wait").start()
+                exec(command, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Error executing command: ${error}`);
+                    return;
+                }
+                setTimeout(() => {
+                    if(stdout.split('').length <= 10){
+                        spinner.error({text:"User not found"})
+                    }else{
+                        spinner.stop()
+                        console.log(chalk.hex("#12a7cd")(stdout.split(':')[0]));
+                    }
+                }, 100)
+                })
+            }else if(allarg[2] === 'logout'){
+                if(user){
+                    onLogout()
+                }else{
+                    console.log("You are not logged in");
+                }
+            }else if(allarg[2] === 'run'){
+                // onServe()
+                console.log("Command: run is " + chalk.hex("#ffc42e")("Under development"));
+                console.log("");
+            }else if(allarg[2] === 'options'){
+                allOptions()
+            }else{
+                console.log("Commands:");
+                console.log("");
+                console.log("clone                  Clone a project created in Backgen")
+                console.log("update                 Update existing project in the current directory "+chalk.hex("#ffc42e")("[Under development]"))
+                console.log("run                    Run the project in the current directory "+chalk.hex("#ffc42e")("[Under development]"))
+                console.log("");
+                console.log("login                  Login to an Backgen account")
+                console.log("logout                 Logout of an Backgen account")
+                console.log("whoami                 Return the currently authenticated account")
+                console.log("");
+                console.log("options                Show all options")
+                console.log("");
+            }
+        }, 1000)
+    });
+}
+
+async function askLogin(){
+    const data = await inquirer.prompt({
+        name: 'email',
+        type: 'input',
+        message: 'Email Address:'
+    })
+    email = data.email
+    return askPassword()
+}
+
+async function askPassword(){
+    const data = await inquirer.prompt({
+        name: 'password',
+        type: 'password',
+        message: 'Password:'
+    })
+    password = data.password
+    return onLogin()
+}
+
+async function onLogin(){
+    const spinner = createSpinner('Please wait').start()
+    const loginVar = {
+        "login": {
+            "email": email,
+            "password": password
+        }
+    }
+    await request(endpoint, login_mutation, loginVar, headers)
+    .then((data)=>{
+        spinner.success()
+        const command = `npm config set backgen ${email+':'+data?.onLogin} -g`
+        exec(command, (error, stdout, stderr) => {
+            if(error){
+                console.log('Something went wrong');
+            }
+            spinner.success({text:`Successfully logged in as`})
+            console.log(chalk.hex("#12a7cd")(email))
+        })
+    }).catch((err)=>{
+        spinner.error({text:`Invalid credentials`})
+    })
+}
+
+async function onLogout(){
+    const command = "npm config delete backgen -g"
+    const spinner = createSpinner('Please wait').start()
+    exec(command, (error, stdout, stderr) => {
+        if(error){
+            console.log('Something went wrong');
+        }
+        spinner.success({text:`Successfully logged out`})
+    })
+}
+
+async function allOptions(){
+    const data = await inquirer.prompt({
+        name: 'options',
+        type: 'list',
+        message: 'Select option:',
+        choices:user? ["clone", "update", "help", "logout"] : ["login","register"]
+    })
+    if(data.options === 'login'){
+        return askLogin()
+    }else if(data.options === 'clone'){
+        onClone()
+    }else if(data.options === 'update'){
+        onUpdate()
+    }else if(data.options === 'logout'){
+        onLogout()
+    }else if(data.options === 'login'){
+        onLogin()
+    }
+}
+
+function onClone(){
+    if(allarg[3] || project){
+        checkProject(allarg[3] || project)
+    }else{
+        cloneOptions()
+    }
+}
+
+async function cloneOptions(){
+    const data = await inquirer.prompt({
+        name: 'options',
+        type: 'list',
+        message: 'Select option:',
+        choices:["Get all projects", "Enter project ID"]
+    })
+    if(data.options === 'Get all projects'){
+        getAllProject()
+    }else if(data.options === 'Enter project ID'){
+        getProjectId()
+    }
+}
+
+async function getAllProject(){
+    const spinner = createSpinner('Getting projects').start()
+    const allProjVar = {
+        getProjectId:""
+    }
+    const allProjHead = {
+        Authorization: user?.split(':')[1].split('\n').join('') || '',
+    }
+    await request(endpoint, projects_query, allProjVar, allProjHead)
+    .then((data)=>{
+        spinner.success()
+        showAllProject(data?.getUser?.projects);
+    }).catch((error)=>{
+        spinner.error()
+        console.log(error.message);
+    })
+}
+
+async function showAllProject(datas){
+    const data = await inquirer.prompt({
+        name: 'options',
+        type: 'list',
+        message: 'Select project:',
+        choices: datas?.map((item)=>item?.name)
+    })
+    if(data.options){
+        checkProject(datas?.find((e)=>e.name === data.options)?.uuid)
+    }
+}
+
+async function getProjectId(){
+    const data = await inquirer.prompt({
+        name: 'project',
+        type: 'input',
+        message: 'Project ID:'
+    })
+    return checkProject(data?.project)
+}
+
+async function checkProject(datas){
+    const spinner = createSpinner('Checking project').start()
+    const allProjVar = {
+        getProjectId:datas
+    }
+    const allProjHead = {
+        Authorization: user?.split(':')[1].split('\n').join('') || '',
+    }
+    await request(endpoint, project_query, allProjVar, allProjHead)
+    .then((data)=>{
+        spinner.success()
+        getProject(data);
+    })
+    .catch((error)=>{
+        spinner.error()
+    })
+}
+
+function getProject(data){
+    const spinner = createSpinner('Downloading').start()
+
+    const db = data? data?.getProject?.database : ""
+    const feat = data? data?.getProject?.services : []
+    const trigg = data? data?.getProject?.triggers : []
+    const schema = data? data?.getProject?.schemas : []
+
+    const backgenCode = `{\n    "name":"${data?.getProject?.name}",\n    "projectID":"${data?.getProject?.uuid}",\n    "user":""\n}`
+
+    try{
+        const folderName = data?.getProject?.name;
+        fs.mkdirSync(folderName);
+
+        const jsonData = JSON.stringify(packageCode({data:data, db:db}), null, 2);
+
+        const nestedFolderName = 'schema';
+        fs.mkdirSync(`${folderName}/${nestedFolderName}`);
+
+        fs.writeFileSync(`${folderName}/${nestedFolderName}/resolvers.js`, resolve({db:db, schema:schema, trigg:trigg}));
+        fs.writeFileSync(`${folderName}/${nestedFolderName}/typeDefs.js`, typeCode({schema:schema, db:db}));
+
+        fs.writeFileSync(`${folderName}/index.js`, indCode(db));
+
+        fs.writeFileSync(`${folderName}/backgen.json`, backgenCode);
+        fs.writeFileSync(`${folderName}/package.json`, jsonData);
+        fs.writeFileSync(`${folderName}/.env`, envContent(db));
+
+        const dock = () => {
+            if (feat?.filter((e) => e === "401")?.length > 0) {
+                fs.writeFileSync(`${folderName}/Dockerfile`, dockerFile), fs.writeFileSync(".dockerignore", dockerIgnore)
+            }
+        }
+
+        const git = () => {
+            if (feat?.filter((e) => e === "402")?.length > 0) {
+                fs.writeFileSync(`${folderName}/.gitignore`, gitIgnore)
+            }
+        }
+
+        const mongo = () => {
+            if (db === "MongoDB") {
+                fs.writeFileSync(`${folderName}/mongodb.js`, mongoFile)
+            }
+        }
+
+        mongo()
+        dock()
+        git()
+        
+        setTimeout(() => {
+            spinner.success()
+        }, 3000)
+
+    }catch(err){
+        if(err?.code === 'EEXIST'){
+            spinner.error({text:"Error: Folder with project name already exist"})
+        }else{
+            spinner.error({text:"Error: Downloading failed"})
+            console.log(err);
+        }
+    }
+}
+
+function onUpdate(){
+    const spinner = createSpinner('Checking project').start()
+    
+    fs.access(`${__dirname}/backgen.json`, fs.constants.F_OK, (err) => {
+        if (err) {
+            setTimeout(() => {
+                spinner.error({text:"Error: backgen.json not found"})
+            }, 2000)
+        }else{
+            fs.readFile(`${__dirname}/backgen.json`, 'utf8', (err, data) => {
+                if (err) {
+                    setTimeout(() => {
+                        spinner.error({text:"Error: backgen.json not found"})
+                    }, 2000)
+                }
+                try {
+                    const jsonData = JSON.parse(data);
+                    setTimeout(() => {
+                        spinner.success()
+                        checkUpdate(jsonData);
+                    }, 2000)
+                } catch (err) {
+                    setTimeout(() => {
+                        spinner.error({text:"Error: backgen.json not found"})
+                    }, 2000)
+                }
+            });
+        }
+    });
+}
+
+function checkUpdate(data){
+    const spinner = createSpinner('Checking for update').start()
+    setTimeout(() => {
+        spinner.success()
+        console.log(data);
+    }, 3000)
+}
+
+function onServe(){
+    const command = 'npm install';
+    const spinner = createSpinner("Running "+ command).start()
+    exec(command, (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error executing command: ${error}`);
+        return;
+    }
+    setTimeout(() => {
+        spinner.success()
+        console.log(`Command output: ${stdout}`);
+        pm2Setup()
+    }, 3000)
+    })
+}
+
+function pm2Setup(){
+    const spinner = createSpinner("Setting up PM2").start()
+    setTimeout(() => {
+        spinner.success()
+    }, 3000)
+}
+
+welcome()

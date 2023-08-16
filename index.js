@@ -14,7 +14,7 @@ import { project_query, projects_query } from "./gql/query.js"
 import { login_mutation } from "./gql/mutation.js"
 import { dockerFile, dockerIgnore, envContent, gitIgnore, indCode, mongoFile, packageCode, resolve, typeCode } from "./backgen/covertor.js";
 
-const endpoint = `https://backgen-server.onrender.com`
+const endpoint = `https://server.backgen.io`
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -319,6 +319,12 @@ function getProject(data){
             }
         }
 
+        const fire = () => {
+            if (db === "Firebase") {
+                fs.writeFileSync(`${folderName}/serviceAccountKey.json`, '')
+            }
+        }
+
         const git = () => {
             if (feat?.filter((e) => e === "402")?.length > 0) {
                 fs.writeFileSync(`${folderName}/.gitignore`, gitIgnore)
@@ -332,6 +338,7 @@ function getProject(data){
         }
 
         mongo()
+        fire()
         dock()
         git()
         
